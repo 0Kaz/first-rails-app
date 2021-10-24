@@ -44,7 +44,7 @@ rails new first-rails-app --skip-active-storage --skip-action-mailbox
 
 Comme vous l'avez déjà constater, le Git est initialiser par défaut après avoir générer votre première application Rails.
 
-![https://res.cloudinary.com/kzkjr/image/upload/v1635104715/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_20.43.07_2.png]
+![git rails](https://res.cloudinary.com/kzkjr/image/upload/v1635104715/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_20.43.07_2.png)
 
 
 Autrement dit, il va falloir faire un premier ```git add``` + ```git commit``` sur votre terminal afin d'historiser vos push Git. 
@@ -76,5 +76,5 @@ Il ne vous reste plus qu'à ouvrir le lien du serveur rails ==>  http://localhos
 
 Voyons un aperçu de la structure Rails
 
-![https://res.cloudinary.com/kzkjr/image/upload/v1635104715/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_20.40.58_2.png]
+![structure rails](https://res.cloudinary.com/kzkjr/image/upload/v1635104715/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_20.40.58_2.png)
 
