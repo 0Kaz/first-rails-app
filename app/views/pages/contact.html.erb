@@ -1,1 +1,10 @@
-<h1>Contact page</h1>
+<% members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine' ] %>
+
+<h2>Meet our team</h2>
+<ol>
+  <% members.each do |member| %>
+    <li><%= member.capitalize %></li>
+  <% end %>
+</ol>
+
+<%= link_to "Index", root_path%>

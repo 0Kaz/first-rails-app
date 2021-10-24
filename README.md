@@ -18,7 +18,9 @@ De nos jours, les développeurs se spécialisent tous sur un ou plusieurs framew
 
 Ruby On Rails est un framework web open-source écrit en Ruby, il propose une structure pré-configurer qui permet de développer rapidement votre application web, RoR vous apporte plus de fléxibilité et facilité pour programmer votre application web sans à le configurer à zéro ! 
 
-David Heinemeier Hansson, le créateur de Ruby On Rails s'est inspirer de Matz (créateur de Ruby) pour la simplicité des syntaxes Ruby et déploiement des projets Ruby; il a donc créer Rails, un framework qui permet au développeur de gagner plus de temps sans à configurer leurs environments + structure de développement, Rails est prisé par tous les développeurs pour l'économie du temps à générer un projet sans oublier que s'est programmer sous Ruby.
+David Heinemeier Hansson, le créateur de Ruby On Rails s'est inspirer de Matz (créateur de Ruby) pour la simplicité des syntaxes Ruby et déploiement des projets Ruby.
+
+Il a donc créer Rails, un framework qui permet au développeur de gagner plus de temps sans à configurer leurs environments + structure de développement, Rails est prisé par tous les développeurs pour l'économie du temps à générer un projet sans oublier que s'est programmer sous Ruby.
 
 Pour plus d'information sur la doctrine Rails, voici un article très intéressant sur note site du Wagon : https://www.lewagon.com/blog/rails_doctrine ou le site officiel de RoR via ce lien : https://rubyonrails.org/doctrine/ 
 
@@ -118,6 +120,7 @@ Les routes nous permettent tout simplement de décrire les itinéraires de chaqu
 
 Par exemple :
 
+#### Routes
 ```ruby
 #config/routes.rb
 Rails.application.routes.draw do
@@ -126,9 +129,28 @@ Rails.application.routes.draw do
   get "/about", to: 'pages#about'
   get "/contact", to: "pages#contact"
 
-  #verb #path_you_name, #controller_action
+  #verb #URI Pattern #controller_action
 end
 ```
+
+#### Root 
+
+Il est possible de définir un itinéraire **root** 
+
+```ruby
+#config/routes.rb
+Rails.application.routes.draw do
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: "pages#index"
+  get "/about", to: 'pages#about'
+  get "/contact", to: "pages#contact"
+
+  #verb #URI Pattern #controller_action
+end
+```
+
+
+#### Page controller
 
 ```ruby
 #app/controllers/pages_controller.rb
@@ -144,14 +166,141 @@ class PagesController < ApplicationController
 end
 ```
 
-Comme vous le constatez, les actions définies sur le contrôleurs sont déclarer sur chaque route. 
+Comme vous l'avez pu remarquer sur le fichier ```routes.rb``` , les actions définies sur le contrôleurs **Pages** sont déclarés sur chaque route. 
+
+Vous pouvez nommer vos pages après les **verb** comme bon vous semble, il est toutefois conseiller de leurs donner le même nom que leurs actions au contrôleur afin d'éviter des confusions.
+
+Nous avons aussi créer 3 fichiers sur la vue du contrôleur Pages ci-dessous : 
+
+<p align="center">
+  <img width="200" height="400" src="https://res.cloudinary.com/kzkjr/image/upload/v1635108196/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_21.31.02_2.png">
+</p>
+
+
+Vous pouvez être assister sur Rails pour connaitre les paginations configurer sur ```routes.rb``` en utilisant cette commande via le terminal : 
+
+```bash
+rails routes
+  Prefix Verb URI Pattern         Controller#Action
+homepage GET  /homepage(.:format) pages#index
+   about GET  /about(.:format)    pages#about
+ contact GET  /contact(.:format)  pages#contact
+
+```
+
+**Pour filter par nom d'actions sur le contrôleurs**
+
+```bash
+rails routes -g about
+```
+
+**Pour filtrer par contrôleurs**
+
+```bash
+rails routes -c pages
+```
+
+### Layout + View 
+
+```ruby
+# app/views/layouts/application.html.erb
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FirstRailsApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
+
+```
+
+### ERB 
+
+L'ERB signifie Embedded Ruby, c'est une syntaxe qui vous permet d'écrire du ruby sous Html.
+
+```ruby
+<p>Il est <%= Time.now %><p>
+```
+
+### BOUCLES
+
+N'oubliez pas que Rails est initialement du Ruby, vous pouvez utiliser tous les boucles vu durant vos premiers challenges Ruby au Wagon sur les vues ainsi que les contrôleurs.
+
+```ruby
+# app/views/pages/contact.html.erb
+
+<% members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine' ] %>
+
+<h2>Meet our team</h2>
+<ol>
+  <% members.each do |member| %>
+    <li><%= member.capitalize %></li>
+  <% end %>
+</ol>
+```
+
+### INSTANCES DE VARIABLES SUR LE CONTROLEUR
+
+Il est toutefois inutile de stocker vos données dans la partie vue, chaque **contrôleur** est lié à sa **vue** par ses **actions**.
+
+Par exemple : 
+```ruby
+class PagesController < ApplicationController 
+    def index
+    
+    end
+
+    def about 
+    end
+
+    def contact 
+       #action
+       @members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine' ]
+    end
+end
+
+```
+
+
+```ruby
+# app/views/pages/contact.html.erb
+#view
+<h2>Meet our team</h2>
+<ol>
+  <% members.each do |member| %>
+    <li><%= member.capitalize %></li>
+  <% end %>
+</ol>
+```
+
+
+### Liens Hypertextes sur Rails 
+
+
+```ruby
+<%= link_to ANCHOR_TEXT, ANCHOR_URL %>
+```
 
 
 
+```ruby
+<%= link_to "About", about_path%>
+<%= link_to "Contact", contact_path%>
 
+```
 
-
-
-
+```ruby
+<%= link_to "Index", root_path%>
+```
 
 Ecrit et éditer par 0kaz

@@ -6,5 +6,6 @@ class PagesController < ApplicationController
     end
 
     def contact 
+        @members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine' ]
     end
 end
