@@ -8,21 +8,21 @@ Vous trouverez sur ce repo un recap en FR de la lecture qu'on a fait ensemble !:
 
 ## C'est quoi un Framework ??
 
-Un framework est un ensemble de composants de codes ou bibliothèque de fonctionnalités qui permet au développeur de piocher des fonctions qui sont au préalable pré-installer ou pré-configurer. L'utilisation d'un framework web ou mobile permet de gagner beaucoup de temps lors d'un démarrage d'un projet. 
+Un framework est un ensemble de composants de codes ou bibliothèque de fonctionnalités qui permet au développeur de piocher des fonctions qui sont au préalable préinstallé ou pré-configuré. L'utilisation d'un framework web ou mobile permet de gagner beaucoup de temps lors d'un démarrage d'un projet. 
 
-De nos jours, les développeurs se spécialisent tous sur un ou plusieurs framework dépendemment de leurs besoins ou type de projets.
+De nos jours, les développeurs se spécialisent tous sur un ou plusieur framework dépendamment de leurs besoins ou type de projets.
 
 
 ## Ruby On Rails 
 
 
-Ruby On Rails est un framework web open-source écrit en Ruby, il propose une structure pré-configurer qui permet de développer rapidement votre application web, RoR vous apporte plus de fléxibilité et facilité pour programmer votre application web sans à le configurer à zéro ! 
+Ruby On Rails est un framework web open-source écrit en Ruby, il propose une structure pré-configurée qui permet de développer rapidement votre application web, RoR vous apporte plus de flexibilité et facilité pour programmer votre application web sans à le configurer à zéro ! 
 
-David Heinemeier Hansson, le créateur de Ruby On Rails s'est inspirer de Matz (créateur de Ruby) pour la simplicité des syntaxes Ruby et déploiement des projets Ruby.
+David Heinemeier Hansson, le créateur de Ruby On Rails s'est inspiré de Matz (Yukihiro Matsumoto A.K.A créateur de Ruby) pour la simplicité des syntaxes Ruby et déploiement des projets Ruby.
 
-Il a donc créer Rails, un framework qui permet au développeur de gagner plus de temps sans à configurer leurs environments + structure de développement, Rails est prisé par tous les développeurs pour l'économie du temps à générer un projet sans oublier que s'est programmer sous Ruby.
+Il a donc créé Rails, un framework qui permet au développeur de gagner plus de temps sans à configurer leurs environnements + structure de développement, Rails est prisé par tous les développeurs pour l'économie du temps à générer un projet sans oublier que s'est programmé sous Ruby.
 
-Pour plus d'information sur la doctrine Rails, voici un article très intéressant sur note site du Wagon : https://www.lewagon.com/blog/rails_doctrine ou le site officiel de RoR via ce lien : https://rubyonrails.org/doctrine/ 
+Pour plus d'informations sur la doctrine Rails, voici un article très intéressant sur note site du Wagon : https://www.lewagon.com/blog/rails_doctrine ou le site officiel de RoR via ce lien : https://rubyonrails.org/doctrine/ 
 
 
 ***>Il n’y aurait pas de Rails sans Ruby, il est donc normal que le premier pilier doctrinal soit tiré de la motivation fondamentale qui a motivé la création de Ruby.*** *DHH* 
@@ -52,7 +52,7 @@ rails new first-rails-app --skip-active-storage --skip-action-mailbox
 
 ## Git sur Rails 
 
-Comme vous l'avez déjà constater, le Git est initialiser par défaut après avoir générer votre première application Rails.
+Comme vous l'avez déjà constaté, le Git est initialisé par défaut après avoir généré votre première application Rails.
 
 <p align="center">
   <img width="600" height="200" src="https://res.cloudinary.com/kzkjr/image/upload/v1635104715/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_20.43.07_2.png">
@@ -228,13 +228,18 @@ rails routes -c pages
 
 L'ERB signifie Embedded Ruby, c'est une syntaxe qui vous permet d'écrire du ruby sous Html.
 
+**Différence entre ```<%=%>``` et ```<% %>```**:
+
+:clap:	<%= J'affiche du contenu sur html via ruby %>
+:clap:  <% je calcule/compile du Ruby sans afficher le résultat sur ma page Html %>
+
 ```ruby
 <p>Il est <%= Time.now %><p>
 ```
 
 ### BOUCLES
 
-N'oubliez pas que Rails est initialement du Ruby, vous pouvez utiliser tous les boucles vu durant vos premiers challenges Ruby au Wagon sur les vues ainsi que les contrôleurs.
+N'oubliez pas que Rails est initialement du Ruby, vous pouvez toujours utiliser les boucles vues durant vos premiers challenges Ruby au Wagon.
 
 ```ruby
 # app/views/pages/contact.html.erb
@@ -251,7 +256,7 @@ N'oubliez pas que Rails est initialement du Ruby, vous pouvez utiliser tous les 
 
 ### INSTANCES DE VARIABLES SUR LE CONTROLEUR
 
-Il est toutefois inutile de stocker vos données dans la partie vue, chaque **contrôleur** est lié à sa **vue** par ses **actions**.
+Il est toutefois inutile de stocker vos données dans la partie vue, chaque **contrôleur** est lié à sa **vue** par son **action**.
 
 Par exemple : 
 ```ruby
@@ -265,7 +270,7 @@ class PagesController < ApplicationController
 
     def contact 
        #action
-       @members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine' ]
+       @members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine','abdelhak']
     end
 end
 
@@ -285,13 +290,12 @@ end
 
 
 ### Liens Hypertextes sur Rails 
-
+ 
+Les liens hypertextes sur Rails sont beaucoup plus efficace que les tag html, celles-ci contiennent les routes paths.
 
 ```ruby
 <%= link_to ANCHOR_TEXT, ANCHOR_URL %>
 ```
-
-
 
 ```ruby
 <%= link_to "About", about_path%>
@@ -303,4 +307,95 @@ end
 <%= link_to "Index", root_path%>
 ```
 
-Ecrit et éditer par 0kaz
+### Params
+
+Il est possible de communiquer des informations, données en passant de la vue au contrôleur grâce au params.
+
+#### VUE
+```ruby
+<!-- app/views/pages/contact.html.erb -->
+
+<h2>Meet our team</h2>
+<ol>
+  <% @members.each do |member| %>
+    <li><%= member.capitalize %></li>
+  <% end %>
+</ol>
+
+<form action="/contact" method="get">
+    <input type="text" name="member" placeholder="Who are you looking for?">
+    <input type="submit">
+  </form>
+
+
+<%= link_to "Index", root_path%>
+```
+
+#### CONTRÔLEUR
+```ruby
+class PagesController < ApplicationController
+    def index
+    end
+
+    def about 
+    end
+
+    def contact 
+        @members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine','abdelhak' ]
+        puts "getting the params : #{params[:member]}"
+    end
+end
+
+```
+
+### Params Livecode 
+
+```ruby
+<!-- app/views/pages/contact.html.erb -->
+
+<h2>Meet our team</h2>
+<ol>
+  <% @members.each do |member| %>
+    <li><%= member.capitalize %></li>
+  <% end %>
+</ol>
+
+<form action="/contact" method="get">
+    <input type="text" name="member" placeholder="Who are you looking for?" value="<%=params[:member}%>">
+    <input type="submit">
+  </form>
+
+
+<%= link_to "Index", root_path%>
+```
+
+```ruby
+
+class PagesController < ApplicationController
+    def index
+    end
+
+    def about 
+    end
+
+    def contact 
+        @members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine' ]
+        if params[:member]
+            @members = @members.select { |member| member.start_with? (params[:member].downcase)}
+        end
+    end
+end
+
+```
+
+Si vous vérifiez votre terminal qui lance le serveur Rails, vous verrez un résultat semblable à celui-ci :
+```
+Processing by PagesController#contact as HTML
+  Parameters: {"member"=>"Omar"}
+getting the params : Omar
+```
+
+
+GOOD LUCK WITH YOUR CHALLENGES ! :raised_hands:	:raised_hands:	
+
+Écrit et édité par 0Kaz

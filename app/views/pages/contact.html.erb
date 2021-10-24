@@ -1,10 +1,16 @@
-<% members = [ 'salma','loubna','yassine','assem','abdullah','amine','yassine' ] %>
+<!-- app/views/pages/contact.html.erb -->
 
 <h2>Meet our team</h2>
 <ol>
-  <% members.each do |member| %>
+  <% @members.each do |member| %>
     <li><%= member.capitalize %></li>
   <% end %>
 </ol>
+
+<form action="/contact" method="get">
+    <input type="text" name="member" placeholder="Who are you looking for?" value="<%= params[:member]%>">
+    <input type="submit">
+  </form>
+
 
 <%= link_to "Index", root_path%>
