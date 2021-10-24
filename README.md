@@ -15,7 +15,7 @@ David Heinemeier Hansson, le créateur de Ruby On Rails s'est inspirer de Matz (
 Pour plus d'information sur la doctrine Rails, voici un article très intéressant sur note site du Wagon : https://www.lewagon.com/blog/rails_doctrine ou le site officiel de RoR via ce lien : https://rubyonrails.org/doctrine/ 
 
 
-***Il n’y aurait pas de Rails sans Ruby, il est donc normal que le premier pilier doctrinal soit tiré de la motivation fondamentale qui a motivé la création de Ruby.*** *DHH* 
+***>Il n’y aurait pas de Rails sans Ruby, il est donc normal que le premier pilier doctrinal soit tiré de la motivation fondamentale qui a motivé la création de Ruby.*** *DHH* 
 
 ## Générer votre projet Rails 
 
@@ -76,5 +76,6 @@ Il ne vous reste plus qu'à ouvrir le lien du serveur rails ==>  http://localhos
 
 Voyons un aperçu de la structure Rails
 
-![structure rails](https://res.cloudinary.com/kzkjr/image/upload/v1635104715/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_20.40.58_2.png)
-
+<p align="center">
+  <img width="600" height="200" src="https://res.cloudinary.com/kzkjr/image/upload/v1635104715/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_20.40.58_2.png">
+</p>
