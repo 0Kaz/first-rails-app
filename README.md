@@ -31,7 +31,16 @@ Suite à l'installation de rails, vous pouvez vérifier sous quelle version vous
 rails --version
 ```
 
-## GIT 
+Désormais nous pouvons générer notre projet Rails en tapant cette commande sur le terminal : 
+
+```bash
+rails new first-rails-app --skip-active-storage --skip-action-mailbox
+```
+
+***-skip-active-storage et -skip-active-storage sont ce qu'on appelle des "flags", nous allons générer donc un projet sans utiliser du active-storage ou action mailbox, ce sont deux gems pré-installer sur ruby qui permettent (active storage) le rajout des images au cloud en utilisant des services tel que Amazon S3 ou Google Cloud, ainsi que (action mailbox) pour acheminer les services mailing via un controller tel que Mandrill, mailgun, postmark ou sendgrid  ***
+
+
+## Git sur Rails
 
 Comme vous l'avez déjà constater, le Git est initialiser par défaut après avoir générer votre première application Rails.
 
@@ -51,4 +60,9 @@ Autre moyen de vérifier sa création via le terminal est d'écrire cette comman
  first-rails-app git:(master) ✗ git remote -v
 origin  git@github.com:votre-repo/first-rails-app.git (fetch)
 origin  git@github.com:votre-repo/first-rails-app.git (push)
+```
+
+Lançons donc notre application rails pour la première fois en tapant cette commande via le terminal ! 
+```bash
+rails s
 ```
