@@ -90,7 +90,7 @@ Voyons un aperçu de la structure Rails :
   <img width="200" height="400" src="https://res.cloudinary.com/kzkjr/image/upload/v1635104715/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_20.40.58_2.png">
 </p>
 
-Nous allons plus souvent à l'avenir travailler un peu plus sur les dossier **app**,**db** puis **config** que nous verrons un peu plus en profondeur durant votre semaine Rails 
+Nous allons plus souvent travailler sur les dossier **app**,**db** puis **config** que nous verrons un peu plus en profondeur durant votre semaine Rails 
 
 
 ## Les contrôleurs Rails 
@@ -230,8 +230,8 @@ L'ERB signifie Embedded Ruby, c'est une syntaxe qui vous permet d'écrire du rub
 
 **Différence entre ```<%=%>``` et ```<% %>```**:
 
-:clap:	<%= J'affiche du contenu sur html via ruby %>
-:clap:  <% je calcule/compile du Ruby sans afficher le résultat sur ma page Html %>
+:clap:	```<%= J'affiche du contenu sur html via ruby %>```
+:clap:  ```<% je calcule/compile du Ruby sans afficher le résultat sur ma page Html %>```
 
 ```ruby
 <p>Il est <%= Time.now %><p>
