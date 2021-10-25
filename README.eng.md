@@ -9,9 +9,7 @@ You will find in this repo a complete recap of what we saw together during the l
 
 A framework is a set structure in which tasks are performed or completed. Software frameworks are designed to be universal, and reusable to provide functionality as part of a larger software platform, this then facilitates the development of software applications, products, and solutions to ease programmers life while working on projects.
 
-
 ## Ruby On Rails 
-
 
 Ruby On Rails is a server-side opensource web framework written in Ruby, its an Model-view-controller framework providing a default structure for a database, web services and web pages.
 
@@ -90,9 +88,7 @@ We will mostly work on the **app**,**db** and **config** folders during this wee
 
 ## Rails controllers
 
-Controllers provides 
-Le contrôleur effectue différents traitements, communique ave les modèles et donne la main aux vues, l'une des exemples que nous avons citer durant le cours est que le contrôleur est toujour l'intermédiaire entre les modèles et les vues. Il met les données du modèle à la disposition de la vue pour qu'il puisse l'afficher aux utilisateurs et enregistrer/mettre à jour les données dans le modèle.
-
+Controllers is considered as an intermediary between the view and the models through actions.
 
 ### Générer un contrôleur vide 
 
@@ -100,7 +96,7 @@ Le contrôleur effectue différents traitements, communique ave les modèles et 
 rails generate controller pages 
 ```
 
-**Par convention, nous décrivons toujours les contrôleurs au pluriel ! On doit respecter les conventions de nommages sous Rails**
+**Following the principle of CoC, all the controllers shall be in plural and we should always respect naming conventions in Rails for the betterment of our project, Models are in singular, controllers in Plural.**
 
 
 ```ruby
@@ -112,9 +108,10 @@ end
 
 ### Route
 
-Les routes nous permettent tout simplement de décrire les itinéraires de chaque actions(méthodes) définie dans nos contrôleurs dans la vue.
+Routes defines our URI pathways through our application, we describe each URI pattern through actions we defined in our controllers, as we mentioned before, once an action is defined inside a controller, we can specify a view sharing the same name as this action.
 
-Par exemple :
+
+For example :
 
 #### Routes
 ```ruby
@@ -131,7 +128,7 @@ end
 
 #### Root 
 
-Il est possible de définir un itinéraire **root** 
+We can also define a **root** pathway in our routes as such :
 
 ```ruby
 #config/routes.rb
@@ -162,11 +159,11 @@ class PagesController < ApplicationController
 end
 ```
 
-Comme vous l'avez pu remarquer sur le fichier ```routes.rb``` , les actions définies sur le contrôleurs **Pages** sont déclarés sur chaque route. 
+As you might have noticed on the ```routes.rb``` file, each route is declared with its ```URI pattern``` + ```controller#action``` in each itinerary. 
 
-Vous pouvez nommer vos pages après les **verb** comme bon vous semble, il est toutefois conseiller de leurs donner le même nom que leurs actions au contrôleur afin d'éviter des confusions.
+There is also the ability to define its **verb** beforehand (GET,POST,DELETE,PATCH), however ... It is important to name your view the same way as you named its action in the controller to avoid any confusion
 
-Nous avons aussi créer 3 fichiers sur la vue du contrôleur Pages ci-dessous : 
+See below an example where we created 3 views with their dedicated routes : 
 
 <p align="center">
   <img width="200" height="400" src="https://res.cloudinary.com/kzkjr/image/upload/v1635108196/blogging/Capture_d_e%CC%81cran_2021-10-24_a%CC%80_21.31.02_2.png">
@@ -222,20 +219,19 @@ rails routes -c pages
 
 ### ERB 
 
-L'ERB signifie Embedded Ruby, c'est une syntaxe qui vous permet d'écrire du ruby sous Html.
+ERB means Embedded Ruby, it is an extension where you can write both Ruby and Html in one file.
 
-**Différence entre ```<%=%>``` et ```<% %>```**:
+**Different between```<%=%>``` and ```<% %>```**:
 
-:clap:	<%= J'affiche du contenu sur html via ruby %>
-:clap:  <% je calcule/compile du Ruby sans afficher le résultat sur ma page Html %>
+:clap:	<%= I display my ruby code in HTML %>
+:clap:  <% I compile , iterate, calculate in Ruby without displaying anything on my HTML %>
 
 ```ruby
-<p>Il est <%= Time.now %><p>
+<p>The time is : <%= Time.now %><p>
 ```
 
-### BOUCLES
-
-N'oubliez pas que Rails est initialement du Ruby, vous pouvez toujours utiliser les boucles vues durant vos premiers challenges Ruby au Wagon.
+### LOOP
+Don't forget that Rails is essentially Ruby, you can always use the iterators and blocks the same way you did throughout your challenges @ Le Wagon. 
 
 ```ruby
 # app/views/pages/contact.html.erb
@@ -250,11 +246,12 @@ N'oubliez pas que Rails est initialement du Ruby, vous pouvez toujours utiliser 
 </ol>
 ```
 
-### INSTANCES DE VARIABLES SUR LE CONTROLEUR
+### INSTANCE VARIABLES IN RAILS
 
-Il est toutefois inutile de stocker vos données dans la partie vue, chaque **contrôleur** est lié à sa **vue** par son **action**.
+It is not necessary to store your data in an array or hash inside your view, each controller is linked to a view  and defined by its action.
 
-Par exemple : 
+
+For example : 
 ```ruby
 class PagesController < ApplicationController 
     def index
@@ -285,9 +282,10 @@ end
 ```
 
 
-### Liens Hypertextes sur Rails 
+### Links in Rails
  
-Les liens hypertextes sur Rails sont beaucoup plus efficace que les tag html, celles-ci contiennent les routes paths.
+Links in Rails are more efficient and useful than regular anchor tags in Html, it can also include your prefix rails path.
+
 
 ```ruby
 <%= link_to ANCHOR_TEXT, ANCHOR_URL %>
@@ -305,9 +303,9 @@ Les liens hypertextes sur Rails sont beaucoup plus efficace que les tag html, ce
 
 ### Params
 
-Il est possible de communiquer des informations, données en passant de la vue au contrôleur grâce au params.
+You also have the ability to pass params to your controller through a POST verb method in your view to its controller. 
 
-#### VUE
+#### VIEW
 ```ruby
 <!-- app/views/pages/contact.html.erb -->
 
@@ -327,7 +325,7 @@ Il est possible de communiquer des informations, données en passant de la vue a
 <%= link_to "Index", root_path%>
 ```
 
-#### CONTRÔLEUR
+#### CONTROLLER
 ```ruby
 class PagesController < ApplicationController
     def index
@@ -384,7 +382,7 @@ end
 
 ```
 
-Si vous vérifiez votre terminal qui lance le serveur Rails, vous verrez un résultat semblable à celui-ci :
+Check out your terminal and you will see a result as such :
 ```
 Processing by PagesController#contact as HTML
   Parameters: {"member"=>"Omar"}
@@ -394,4 +392,4 @@ getting the params : Omar
 
 GOOD LUCK WITH YOUR CHALLENGES ! :raised_hands:	:raised_hands:	
 
-Écrit et édité par 0Kaz
+Written and edited by 0Kaz
