@@ -95,7 +95,7 @@ Nous allons plus souvent travailler sur les dossier **app**,**db** puis **config
 
 ## Les contrôleurs Rails 
 
-Le contrôleur effectue différents traitements, communique ave les modèles et donne la main aux vues, l'une des exemples que nous avons citer durant le cours est que le contrôleur est toujour l'intermédiaire entre les modèles et les vues. Il met les données du modèle à la disposition de la vue pour qu'il puisse l'afficher aux utilisateurs et enregistrer/metà à jour les données dans le modèle.
+Le contrôleur effectue différents traitements, communique ave les modèles et donne la main aux vues, l'une des exemples que nous avons citer durant le cours est que le contrôleur est toujour l'intermédiaire entre les modèles et les vues. Il met les données du modèle à la disposition de la vue pour qu'il puisse l'afficher aux utilisateurs et enregistrer/mettre à jour les données dans le modèle.
 
 
 ### Générer un contrôleur vide 
@@ -104,7 +104,7 @@ Le contrôleur effectue différents traitements, communique ave les modèles et 
 rails generate controller pages 
 ```
 
-**Par convention, nous décrivons toujours les contrôleurs au pluriel !**
+**Par convention, nous décrivons toujours les contrôleurs au pluriel ! On doit respecter les conventions de nommages sous Rails**
 
 
 ```ruby
